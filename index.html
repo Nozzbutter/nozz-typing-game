@@ -121,7 +121,7 @@
 
   <div class="container">
 
-    <h1>⚡ Nozz's Surron Typing Game ⚡</h1>
+    <h1>⚡ Nozz's Typing Game ⚡</h1>
 
     <div class="subtitle">
       Type the words as fast as possible!
@@ -141,7 +141,7 @@
     <br>
 
     <button onclick="startGame()">
-      Start Ride
+      Start Typing
     </button>
 
     <button onclick="resetLeaderboard()">
@@ -152,7 +152,7 @@
 
     <div id="leaderboard">
 
-      <h2>🏁 Fastest Riders</h2>
+      <h2>🏁 Fastest Typers</h2>
 
       <ol id="scores"></ol>
 
@@ -186,86 +186,8 @@
     // =========================
 
     const words = [
+"about","above","across","action","active","actual","advice","afraid","afternoon","against","airport","already","amazing","another","answer","anybody","apartment","apology","appears","applied","arrange","arrival","article","artists","aspects","assume","athlete","attempt","attention","attract","average","backpack","balance","balloon","bananas","barrier","battery","because","bedroom","believe","beneath","benefit","between","bicycle","blanket","blessing","border","bother","bottles","builder","business","cabinet","capture","careful","carrier","cartoon","catalog","ceiling","central","century","certain","chamber","channel","chapter","charity","cheaper","chicken","choices","citizen","classic","climate","closely","clothes","collect","college","combine","comfort","command","comment","company","compare","compete","complex","concept","concern","concert","conduct","confirm","connect","consist","contact","contain","content","control","cookies","correct","costume","cottage","courage","covered","crashes","creator","crystal","culture","curious","current","curtain","customs","cutting","damage","dancing","danger","daytime","decided","decline","default","defense","delight","deliver","density","deposit","deserve","desktop","details","develop","diamond","digital","dinner","discuss","disease","display","distance","district","diverse","doctor","dollars","dominate","drawing","drivers","dynamic","earlier","earnest","eastern","economy","edition","effects","efforts","elderly","element","embrace","emotion","emperor","employs","enabled","encounter","endless","enhance","enough","episode","equally","escaped","essence","evening","exactly","example","excited","exclude","exhibit","explore","express","factory","failure","famous","fantasy","farmers","fashion","feature","federal","feeling","fiction","fifteen","fighter","finally","finding","fishing","fitness","flowers","focused","forever","forgive","fortune","forward","freedom","friends","further","gallery","garbage","gateway","general","genius","gesture","glasses","greater","grocery","growing","habitat","handful","happens","harvest","heading","healthy","hearing","helpful","herself","highway","history","holiday","honesty","however","hundred","husband","imagine","improve","include","initial","insects","instant","instead","intense","interest","journey","justice","kitchen","knowing","largest","lasting","leading","learned","leisure","library","limited","logical","machine","manager","markets","married","massive","maximum","measure","medical","meeting","message","million","mineral","minimum","miracle","mission","mistake","mixture","monitor","morning","musical","mystery","natural","neither","nervous","network","nothing","nuclear","numbers","observe","obvious","officer","opening","operate","opinion","opposed","organic","outcome","outside","overall","package","painful","parking","partner","passage","passion","payment","penalty","pencils","perform","perhaps","phoenix","physics","picture","pioneer","plastic","platform","pleased","pockets","popular","portion","poverty","precise","predict","premium","prepare","present","prevent","primary","printer","privacy","problem","process","produce","profile","program","project","promise","promote","protect","protein","provide","publish","purpose","pushing","quality","quarter","quickly","railway","reading","reality","receive","recover","reflect","regular","related","release","remains","removal","replace","request","require","reserve","resolve","respect","respond","results","retired","reveals","reverse","routine","running","satisfy","science","section","segment","serious","service","session","setting","several","sharing","shortly","showing","silence","similar","sincere","slightly","society","soldier","somehow","someone","speaker","special","station","storage","strange","stretch","student","subject","success","suggest","support","suppose","surface","survive","teacher","television","telling","terrace","texture","theater","therapy","thought","through","tonight","towards","traffic","travels","treasure","trouble","turning","typical","umbrella","uniform","unknown","unusual","upgrade","upstairs","variety","various","vehicle","venture","version","victory","village","violent","visitor","vitamin","walking","warning","weather","wedding","weekend","welcome","western","whereas","without","witness","working","writing","younger","ability","absence","academy","account","achieve","acquire","address","advance","adviser","airline","alcohol","alleged","already","amateur","amusing","ancient","animals","annoyed","anxiety","anymore","appeals","approve","archive","arguing","arrived","ashamed","assault","athletic","attitude","auction","backyard","bargain","becoming","bedside","beloved","benefits","birthday","broccoli","building","campaign","capacity","careless","carrying","category","celebrate","ceremony","chairman","champion","chemical","children","circular","cleaning","clinical","clothing","collapse","combined","commonly","computer","conflict","confused","consider","constant","consumer","continue","contract","contrast","convince","corners","creation","criminal","crossing","cultural","daughter","deadline","december","decision","decorate","decrease","delivery","describe","designer","desperate","detected","diameter","director","discover","disorder","document","domestic","dramatic","education","electric","elevator","emphasis","employee","engineer","enormous","entirely","entrance","envelope","estimate","evaluate","evidence","exchange","exercise","existing","expanded","expected","external","favorite","festival","finished","flexible","football","forecast","forgotten","friendly","function","furniture","generate","governor","graduate","graphics","guidance","hardware","heritage","hospital","identity","incident","increase","industry","informed","innocent","inspired","instance","internal","involved","judgment","language","learning","location","magazine","maintain","marathon","material","mechanic","memories","merchant","midnight","military","movement","multiple","national","negative","neighbor","nominate","normally","notebook","nutrient","occasion","official","operator","ordinary","organize","original","painting","parallel","patience","personal","physical","planning","pleasant","pleasure","position","positive","powerful","practice","presence","pressure","priority","producer","progress","property","proposal","prospect","protocol","purchase","question","reaction","receiver","recovery","regional","register","relation","reliable","remember","research","resource","response","restaurant","romantic","sandwich","schedule","security","separate","shoulder","software","solution","southern","speaking","specific","strategy","strength","structure","sunshine","surprise","surround","swimming","symbolic","teaching","together","tomorrow","training","treasury","triangle","ultimate","universe","valuable","vacation","vertical","violence","wireless","wonderful","workshop","yourself","absolute","academic","accepted","accident","adoption","adventure","aircraft","alliance","announce","anything","approach","approval","argument","arrangement","assistant","attached","audience","available","awareness","baseball","basement","bathroom","beautiful","beginner","breakfast","breathing","broadcast","cafeteria","calculated","candidate","carefully","celebrity","character","chemistry","chocolate","civilian","classroom","collision","community","complaint","completed","component","condition","conference","connected","conscious","container","continued","corporate","countryside","creature","criticism","dangerous","dedicated","democracy","dependent","described","different","direction","disappear","discovery","discussion","efficient","elections","emergency","emotional","emphasize","equipment","essential","excellent","expansion","experience","financial","foundation","friendship","government","happiness","important","impossible","independent","influence","investment","knowledge","leadership","literature","management","marketing","membership","motivation","newspaper","operations","opportunity","particular","performance","population","preference","preparing","production","professional","protection","recognize","reduction","reputation","restaurant","scientific","selection","significant","successful","technology","traditional","understand","university","wonderfully"
 
-      "apple",
-      "banana",
-      "computer",
-      "rocket",
-      "mountain",
-      "keyboard",
-      "javascript",
-      "winter",
-      "galaxy",
-      "electric",
-      "bicycle",
-      "ocean",
-      "penguin",
-      "adventure",
-      "lightning",
-      "diamond",
-      "sunshine",
-      "volcano",
-      "library",
-      "guitar",
-      "football",
-      "airplane",
-      "rainbow",
-      "treasure",
-      "monster",
-      "chocolate",
-      "waterfall",
-      "fireworks",
-      "telephone",
-      "umbrella",
-      "pineapple",
-      "snowflake",
-      "dinosaur",
-      "spaceship",
-      "calculator",
-      "headphones",
-      "marshmallow",
-      "basketball",
-      "microphone",
-      "hamburger",
-      "crocodile",
-      "motorcycle",
-      "skateboard",
-      "friendship",
-      "moonlight",
-      "painting",
-      "sunglasses",
-      "popcorn",
-      "jellyfish",
-      "adrenaline",
-      "campfire",
-      "watermelon",
-      "explosion",
-      "earthquake",
-      "dragonfly",
-      "coffee",
-      "milkshake",
-      "fantastic",
-      "internet",
-      "controller",
-      "battery",
-      "airpods",
-      "charger",
-      "backflip",
-      "snowboard",
-      "minecraft",
-      "fortnite",
-      "playstation",
-      "blueberry",
-      "raspberry",
-      "waterpark",
-      "wildfire",
-      "slippers",
-      "whirlwind",
-      "nightmare",
-      "sunflower",
-      "volleyball",
-      "cheesecake",
-      "superhero"
 
     ]
 
