@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nozz's Surron Typing Game</title>
+
+  <style>
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #111111, #1c1c1c, #2a2a2a);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: #00ff88;
+      text-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 22px;
+      color: #cccccc;
+      margin-bottom: 35px;
+    }
+
+    #word {
+      font-size: 65px;
+      margin: 40px 0;
+      color: white;
+      text-shadow: 0 0 15px rgba(0,255,136,0.9);
+      min-height: 80px;
+    }
+
+    input {
+      width: 360px;
+      padding: 16px;
+      font-size: 28px;
+      text-align: center;
+      border-radius: 15px;
+      border: 2px solid #00ff88;
+      outline: none;
+      background: #111;
+      color: white;
+      box-shadow: 0 0 20px rgba(0,255,136,0.4);
+    }
+
+    input::placeholder {
+      color: #888;
+    }
+
+    button {
+      margin-top: 20px;
+      margin-left: 8px;
+      margin-right: 8px;
+      padding: 14px 28px;
+      font-size: 22px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(90deg, #00ff88, #00cc66);
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 0 20px rgba(0,255,136,0.4);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0,255,136,0.8);
+    }
+
+    #result {
+      margin-top: 35px;
+      font-size: 30px;
+      min-height: 80px;
+      color: white;
+    }
+
+    #leaderboard {
+      width: 430px;
+      margin: 50px auto;
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #00ff88;
+      box-shadow: 0 0 25px rgba(0,255,136,0.25);
+    }
+
+    #leaderboard h2 {
+      font-size: 36px;
+      color: #00ff88;
+      margin-top: 0;
+      text-shadow: 0 0 10px rgba(0,255,136,0.7);
+    }
+
+    ol {
+      text-align: left;
+      padding-left: 35px;
+      font-size: 24px;
+    }
+
+    li {
+      margin: 12px 0;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>⚡ Nozz's Surron Typing Game ⚡</h1>
+
+    <div class="subtitle">
+      Type the words as fast as possible!
+    </div>
+
+    <div id="word">
+      Press Start
+    </div>
+
+    <input
+      type="text"
+      id="input"
+      placeholder="Start typing..."
+      disabled
+    />
+
+    <br>
+
+    <button onclick="startGame()">
+      Start Ride
+    </button>
+
+    <button onclick="resetLeaderboard()">
+      Reset Leaderboard
+    </button>
+
+    <div id="result"></div>
+
+    <div id="leaderboard">
+
+      <h2>🏁 Fastest Riders</h2>
+
+      <ol id="scores"></ol>
+
+    </div>
+
+  </div>
+
+  <script type="module">
+
+    import { createClient }
+    from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    // =========================
+    // SUPABASE
+    // =========================
+
+    const supabaseUrl =
+      'https://yblaroojefeqhkccxzoz.supabase.co'
+
+    const supabaseKey =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlibGFyb29qZWZlcWhrY2N4em96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODI4MjEsImV4cCI6MjA5NDA1ODgyMX0.lPrqaw2w7qHBouaBbm5f594n0CihHOWcvmc0BYjCBGc'
+
+    const supabase =
+      createClient(
+        supabaseUrl,
+        supabaseKey
+      )
+
+    // =========================
+    // WORD LIST
+    // =========================
+
+    const words = [
+
+      "apple",
+      "banana",
+      "computer",
+      "rocket",
+      "mountain",
+      "keyboard",
+      "javascript",
+      "winter",
+      "galaxy",
+      "electric",
+      "bicycle",
+      "ocean",
+      "penguin",
+      "adventure",
+      "lightning",
+      "diamond",
+      "sunshine",
+      "volcano",
+      "library",
+      "guitar",
+      "football",
+      "airplane",
+      "rainbow",
+      "treasure",
+      "monster",
+      "chocolate",
+      "waterfall",
+      "fireworks",
+      "telephone",
+      "umbrella",
+      "pineapple",
+      "snowflake",
+      "dinosaur",
+      "spaceship",
+      "calculator",
+      "headphones",
+      "marshmallow",
+      "basketball",
+      "microphone",
+      "hamburger",
+      "crocodile",
+      "motorcycle",
+      "skateboard",
+      "friendship",
+      "moonlight",
+      "painting",
+      "sunglasses",
+      "popcorn",
+      "jellyfish",
+      "adrenaline",
+      "campfire",
+      "watermelon",
+      "explosion",
+      "earthquake",
+      "dragonfly",
+      "coffee",
+      "milkshake",
+      "fantastic",
+      "internet",
+      "controller",
+      "battery",
+      "airpods",
+      "charger",
+      "backflip",
+      "snowboard",
+      "minecraft",
+      "fortnite",
+      "playstation",
+      "blueberry",
+      "raspberry",
+      "waterpark",
+      "wildfire",
+      "slippers",
+      "whirlwind",
+      "nightmare",
+      "sunflower",
+      "volleyball",
+      "cheesecake",
+      "superhero"
+
+    ]
+
+    // =========================
+    // VARIABLES
+    // =========================
+
+    let currentWord = ""
+    let startTime = null
+
+    const wordDisplay =
+      document.getElementById("word")
+
+    const input =
+      document.getElementById("input")
+
+    const result =
+      document.getElementById("result")
+
+    const scoresList =
+      document.getElementById("scores")
+
+    // =========================
+    // LOAD LEADERBOARD
+    // =========================
+
+    async function loadLeaderboard() {
+
+      const { data, error } =
+
+        await supabase
+          .from('leaderboard')
+          .select('*')
+          .order('wpm', {
+            ascending: false
+          })
+          .limit(10)
+
+      if (error) {
+
+        console.error(error)
+
+        return
+      }
+
+      scoresList.innerHTML = ""
+
+      data.forEach((entry, index) => {
+
+        const li =
+          document.createElement("li")
+
+        li.textContent =
+          `${index + 1}. ${entry.name} — ${entry.wpm} WPM`
+
+        scoresList.appendChild(li)
+      })
+    }
+
+    // =========================
+    // SAVE SCORE
+    // =========================
+
+    async function saveScore(name, wpm) {
+
+      const { error } =
+
+        await supabase
+          .from('leaderboard')
+          .insert([
+            {
+              name: name,
+              wpm: wpm
+            }
+          ])
+
+      if (error) {
+
+        console.error(error)
+
+        return
+      }
+
+      loadLeaderboard()
+    }
+
+    // =========================
+    // START GAME
+    // =========================
+
+    window.startGame = function () {
+
+      currentWord =
+
+        words[
+          Math.floor(Math.random() * words.length)
+        ]
+
+      wordDisplay.textContent =
+        currentWord
+
+      input.value = ""
+
+      input.disabled = false
+
+      input.focus()
+
+      result.innerHTML = ""
+
+      startTime = null
+    }
+
+    // =========================
+    // INPUT DETECTION
+    // =========================
+
+    input.addEventListener("input", () => {
+
+      if (
+        startTime === null &&
+        input.value.length > 0
+      ) {
+
+        startTime =
+          new Date().getTime()
+      }
+
+      if (input.value === currentWord) {
+
+        const endTime =
+          new Date().getTime()
+
+        const timeTaken =
+          (endTime - startTime) / 1000
+
+        const wpm =
+          Math.round((1 / timeTaken) * 60)
+
+        result.innerHTML = `
+          ✅ PERFECT RUN<br>
+          ⏱ ${timeTaken.toFixed(2)} Seconds<br>
+          ⚡ ${wpm} WPM
+        `
+
+        input.disabled = true
+
+        let name = prompt(
+          "🏁 Enter your rider name:"
+        )
+
+        if (!name || name.trim() === "") {
+
+          name = "Anonymous"
+        }
+
+        saveScore(name, wpm)
+      }
+    })
+
+    // =========================
+    // RESET LEADERBOARD
+    // =========================
+
+    window.resetLeaderboard =
+      async function () {
+
+      const password = prompt(
+        "Enter admin password:"
+      )
+
+      if (password !== "nozz123") {
+
+        alert("Wrong password")
+
+        return
+      }
+
+      const { error } =
+
+        await supabase
+          .from('leaderboard')
+          .delete()
+          .neq('id', 0)
+
+      if (error) {
+
+        console.error(error)
+
+        return
+      }
+
+      loadLeaderboard()
+
+      alert("🏁 Leaderboard Reset!")
+    }
+
+    // =========================
+    // LOAD LEADERBOARD ON OPEN
+    // =========================
+
+    loadLeaderboard()
+
+  </script>
+
+</body>
+</html>
